@@ -40,7 +40,6 @@ Architecture du css:
 /*1. ---Style de base--- */
 
 
-
   body {
     background: #131315;
     font-family: 'Antic Didone', serif; /* Police par défaut */
@@ -129,6 +128,10 @@ Architecture du css:
     }
   }
 
+   .wrap {
+  margin-top: 120px; /* Ajoutez une marge correspondant à la hauteur de votre header */
+  
+  }
 /*1. ---Fin Style de base--- */
 
 
@@ -145,16 +148,17 @@ Architecture du css:
     left: 50%; /* Place le header au milieu horizontalement */
     transform: translateX(-50%); /* Recentre le header car `left: 50%` utilise le coin gauche */
     width: calc(100% - 40px); /* Réduit la largeur pour ajouter un espacement de 20px de chaque côté */
-    max-width: 1200px; /* Fixe une largeur maximale pour ne pas trop étirer sur les écrans larges */
+    max-width: 2300px; /* Fixe une largeur maximale pour ne pas trop étirer sur les écrans larges */
     z-index: 10; /* S'assure que le header reste au-dessus du contenu */
     padding: 10px 20px; /* Ajoute de l'espace interne */
+    margin: 0 auto; /* Centre horizontalement */
     }
 
-  .wrap {
-  margin-top: 120px; /* Ajoutez une marge correspondant à la hauteur de votre header */
-  
+ 
+  /* suprime les marges pour la hauteur du header*/
+    body.home .wrap {
+    margin-top: 0;
   }
-
 
   /* Nouveau conteneur pour les éléments flexibles du header */
   .header-content {
@@ -335,113 +339,113 @@ Architecture du css:
 
 /*3. ---Footer--- */
 
-  /* Footer Global Styles */
+  
   .site-footer {
-    background-color: var(--Black);
-    padding: 20px;
-    text-align: center;
+      background-color: var(--Black);
+      padding: 20px;
+      text-align: center;
   }
 
   .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .footer-links a,
+  .footer-socials .social-name {
+      color: var(--White);
+      text-decoration: none;
+      font-size: 18px; /* Taille alignée avec les social names */
+      transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-socials .social-name:hover {
+      color: var(--Green);
+      transform: scale(1.1);
+  }
+
+  .footer-socials img {
+      width: 48px;
+      height: 48px;
+      margin-right: 8px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .footer-socials a:hover img {
+      transform: scale(1.1);
+      color: var(--Green);
+  }
+
+  .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .footer-socials a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+  }
+
+  .footer-socials .social-name {
+      font-size: 18px;
+  }
+
+  .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+  }
+
+  a.footer-link {
+      padding: 5px 10px;
+  }
+
+  .footer-copyright {
+      font-size: 14px;
+      color: var(--White);
+      margin-top: 20px;
   }
 
   .footer-links a,
   .footer-socials a {
-    color: var(--White);
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
+    text-decoration: none; /* Supprime la ligne bleue sous les liens */
   }
 
-  .footer-links a:hover,
-  .footer-socials a:hover {
-    color: var(--Green);
-  }
 
-  .footer-socials img {
-    color: var(--Green);
-    width: 48px;
-    height: 48px;
-    margin-right: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  .footer-socials a:hover img {
-    transform: scale(1.1);
-  }
-
-  .footer-socials {
-    display: flex;
-    flex-direction: raw;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .footer-socials a {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .footer-socials .social-name {
-    display: none; /* Caché par défaut */
-  }
-
-  /* Copyright Styles */
-  .footer-copyright {
-    font-size: 12px;
-    color: #ccc;
-    margin-top: 20px;
-  }
-  .social-name span {
-    font-size: 18px;
-  }
-
-  /* Desktop Styles */
+  /* Responsive Desktop Styles */
   @media (min-width: 768px) {
-    .footer-content {
-      flex-direction: column;
-      gap: 20px;
-    }
+      .footer-content {
+          flex-direction: column;
+          gap: 20px;
+      }
 
-    .footer-layout {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
-      margin-bottom: 20px;
-    }
+      .footer-layout {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          width: 100%;
+          max-width: 1200px;
+          margin-bottom: 20px;
+      }
 
-    .footer-socials {
-      flex: 1;
-      align-items: flex-start; /* Aligne à gauche */
-    }
+      .footer-socials {
+          flex: 1;
+          justify-content: flex-start;
+      }
 
-    .footer-socials .social-name {
-      display: inline; /* Affiche le nom des réseaux sociaux */
-      font-size: 14px;
-      margin-left: 5px;
-    }
+      .footer-links {
+          justify-content: flex-end;
+      }
 
-    .footer-links {
-      display: flex;
-      text-align: right; /* Aligne à droite */
-      justify-content: center; 
-    }
-
-    a.footer-link {
-      padding: 5px 10px;
-    }
-
-    .footer-copyright {
-      text-align: center;
-      margin-top: 0;
-      font-size: 16px;
-    }
+      .footer-copyright {
+          font-size: 16px;
+      }
   }
 
 
@@ -453,13 +457,14 @@ Architecture du css:
 /*4. ---Page d'accueil--- */
 
 
-  .page{
-    padding: 70px;
+  .section-presentation{
+    padding: 150px;
   }
 
-  .titre, .presentation-titre{
+  .titre, .presentation-titre{ 
     text-align: center;
-    
+    font-weight: 400;
+    line-height: 130%; /* 117px */
   }
 
 
@@ -467,7 +472,7 @@ Architecture du css:
   .presentation-paragraphe {
     font-size: 24px;
     line-height: 1.5;
-    color: #F2E0CF;
+    color: var(--White);
     text-align: center; /* Centrage horizontal du texte */
     display: flex; /* Flexbox pour centrer verticalement */
     justify-content: center; /* Centre horizontalement les enfants */
@@ -475,38 +480,58 @@ Architecture du css:
     margin: 0; /* Supprime les marges */
   }
 
-    .welcome-section {
-      position: relative;
-      height: 100vh; /* Prend toute la hauteur de l'écran */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: var(--White, #F2E0CF); /* Couleur du texte */
+  .hero-section {
+    margin-top: 0; /* Assurez-vous qu'il commence tout en haut */
+    padding: 0;
+  }
+  
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* La vidéo prend toute la hauteur de l'écran */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .welcome-section .background-video {
+  .hero-video-container {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%; /* Couvre toute la largeur */
-      height: 100%; /* Couvre toute la hauteur */
-      object-fit: cover; /* La vidéo remplit l'espace sans distorsion */
-      z-index: -1; /* Place la vidéo derrière le contenu */
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* La vidéo reste en arrière-plan */
   }
 
+  .background-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* La vidéo remplit tout l'espace sans déformation */
+  }
 
-    .welcome-section h1 {
-        position: relative;
-        z-index: 1; /* Par-dessus la vidéo */
-        font-size: 4rem;
-    }
+  .hero-content {
+      position: relative;
+      z-index: 1; /* Le contenu reste devant la vidéo */
+      text-align: center;
+      color: white; /* Couleur du texte */
+      font-size: 4rem; /* Taille du texte */
+      font-family: 'TAN PEARL', serif; /* Font utilisée */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ajoute un ombrage pour le contraste */
+  }
+
+  .titre {
+      margin: 0;
+      padding: 0;
+  }
 
   /* Texte par défaut */
   .text-highlight {
     color: #F2E0CF; /* Couleur par défaut */
     transition: color 0.3s ease; /* Animation fluide */
   }
+
+  
 
   /* Survol de la div */
   .presentation-paragraphe:hover .text-highlight {
@@ -519,126 +544,77 @@ Architecture du css:
     margin-top: 50px;
   }
 
-
+  .text-contact {
+      color: var(--Green);
+      margin: 50px auto; /* Espacement vertical */
+      padding: 0 15px; /* Ajoute des marges internes gauche/droite */
+      text-align: center; /* Centre le texte */
+      max-width: 80%; /* Optionnel : limite la largeur */
+      line-height: 1.6; /* Améliore la lisibilité */
+    }
   /*Last Projets*/
-  .project-card {
-    background-color: #1E1E20; /* Fond sombre pour la carte */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    text-align: center;
-    color: #F2E0CF;
-  }
-
-  .project-cover img {
-    width: 950 px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .project-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #AEDD71;
-  }
-
-  .project-excerpt {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-
-  .project-link {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #AEDD71;
-    color: #131315;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-
-  .project-link:hover {
-    background-color: #8BC860;
-  }
-
-/*4. ---Fin Page d'accueil--- */
-
-
-
-
-/*5. ---Archive projets--- */
-
-  
-  /* Styles globaux */
-  .content-area {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-  }
-
-  .title_projets {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      font-family: 'TAN PEARL', serif;
-  }
-
-  /* Section des cartes */
-  .cards {
+      .last-projet-cards {
       display: flex;
-      overflow-x: auto; /* Scroll horizontal */
-      gap: 20px; /* Espacement entre les cartes */
+      justify-content: center; /* Centre horizontalement */
+      align-items: center; /* Centre verticalement */
+      height: 100vh; /* Prend toute la hauteur de l'écran */
       padding: 20px;
-      scrollbar-width: thin; /* Style pour les navigateurs compatibles */
-      scrollbar-color: #888 #f0f0f0; /* Couleur de la barre de défilement */
+      overflow: hidden; /* Désactive le scroll horizontal si nécessaire */
+      background-color: #131315; /* Optionnel : une couleur de fond pour l'effet visuel */
   }
 
-  .cards::-webkit-scrollbar {
-      height: 10px; /* Hauteur de la barre de défilement */
-  }
+      .last-project_title {
+        display: flex;
+        flex-direction: rows;
+        align-items: center; /* Centrer horizontalement */
+        margin: 0 auto; /* Centrer sur la page */
+        padding: 0 40px; /* Ajoute des marges internes (gauche et droite) */
+        text-align: center; /* Centre le texte */
+    }
 
-  .cards::-webkit-scrollbar-track {
-      background: #f0f0f0; /* Fond de la barre */
-  }
+    .last-project_h3 {
+        font-size: 2.5rem;
+        color: var(--Green);
+    }
 
-  .cards::-webkit-scrollbar-thumb {
-      background-color: #888; /* Couleur du "curseur" */
-      border-radius: 5px;
-  }
+    .last-project-span {
+        display: block;
+        width: 75%; /* Optionnel : ajuster la largeur */
+        height: 2.5px; /* Une ligne de séparation (ou autre design) */
+        background-color: var(--Green); /* Couleur de ton choix */
+        margin: 0 auto; /* Centre la ligne */
+    }
 
-  .projet-card {
-      position: relative;
-      flex: 0 0 auto; /* Fixe la largeur des cartes */
-      width: 950px;
-      aspect-ratio: 950 / 575; /* Ratio fixe (1.65:1) */
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-  }
+    .last-projet-card {
+        position: relative;
+        flex: 0 0 auto; /* Fixe la largeur de la carte */
+        width: 950px;
+        aspect-ratio: 950 / 575; /* Ratio fixe (1.65:1) */
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 
-  /* Effet au survol */
-  .projet-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
+    /* Effet au survol */
+    .last-projet-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
 
-  /* Image du projet */
-  .card-image img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* L'image remplit la carte tout en respectant son ratio */
-  }
+    /* Image de la carte */
+    .last-projet-card-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* L'image remplit la carte tout en respectant son ratio */
+    }
 
-  /* Overlay */
-    .card-overlay {
+    /* Overlay */
+    .last-projet-card-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -649,46 +625,49 @@ Architecture du css:
         opacity: 0; /* Initialement invisible */
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 20px;
-        transition: opacity 0.3s ease;
+        justify-content: space-between;
+        padding: 40px; /* Ajoute des marges internes pour éviter que le contenu touche les bords */
+        box-sizing: border-box; /* Inclut le padding dans les dimensions de l'overlay */
+        border-radius: 10px; /* Ajuste le rayon pour qu'il corresponde aux bords de la carte */
+        transition: opacity 0.3s ease-in-out; /* Transition fluide pour l'apparition */
+        overflow: hidden; /* Empêche tout contenu de dépasser l'overlay */
     }
 
-    .projet-card:hover .card-overlay {
-        opacity: 1; /* L'overlay devient visible au survol */
+    .last-projet-card:hover .last-projet-card-overlay {
+        opacity: 1; /* Rendre l'overlay visible au survol */
     }
 
     /* Contenu de l'overlay */
-    .card-header {
+    .last-projet-card-header {
         display: flex;
-        justify-content: space-between; /* Le titre à gauche et la catégorie à droite */
+        justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .card-title {
-        font-size: 48px;
-        font-family: 'TAN PEARL', serif; /* Police personnalisée */
-        text-align: left; /* Aligné à gauche */
-        flex: 1;
-    }
-
-    .project-type {
-        font-size: 24px;
-        text-transform: uppercase;
-        font-family: 'TAN PEARL', serif; /* Police personnalisée */
-        text-align: right; /* Aligné à droite */
-        margin-left: 20px;
-    }
-
-    .card-description {
-        font-size: 1.2rem;
-        font-family: 'Arial', sans-serif; /* Police classique */
-        text-align: center;
+        width: 100%; /* S'assure que le contenu occupe toute la largeur disponible */
         margin-bottom: 15px;
     }
 
-    .see-more-btn {
+    .last-projet-card-title {
+        font-size: 40px;
+        font-family: 'TAN PEARL', serif;
+        color: var(--White);
+        margin: 0;
+    }
+
+    .last-projet-type {
+        font-size: 32px;
+        font-family: 'Antic Didone', serif;
+        color: var(--White);
+    }
+
+    .last-projet-card-description {
+        font-size: 24px;
+        font-family: 'Antic Didone', sans-serif;
+        color: var(--White);
+        margin-bottom: 15px;
+        padding: 0 20px;
+    }
+
+    .last-projet-see-more-btn {
         align-self: center; /* Centré horizontalement */
         background: var(--Black);
         color: var(--White);
@@ -701,10 +680,177 @@ Architecture du css:
         transition: background 0.3s ease;
     }
 
-    .see-more-btn:hover {
+    .last-projet-see-more-btn:hover {
         background: var(--White);
         color: var(--Black);
     }
+
+    /* Animation fluide */
+    .last-projet-card-title,
+    .last-projet-type,
+    .last-projet-card-description,
+    .last-projet-see-more-btn {
+        transform: translateY(20px); /* Position initiale */
+          opacity: 0;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .last-projet-card:hover .last-projet-card-title,
+    .last-projet-card:hover .last-projet-type,
+    .last-projet-card:hover .last-projet-card-description,
+    .last-projet-card:hover .last-projet-see-more-btn {
+        transform: translateY(0); /* Position finale */
+        opacity: 1; /* Visible */
+    }
+
+
+    .btn-seeprojects {
+      display: block;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+/*4. ---Fin Page d'accueil--- */
+
+
+
+
+/*5. ---Archive projets--- */
+
+  
+  /* Styles globaux */
+
+    .title_projets {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        font-family: 'TAN PEARL', serif;
+    }
+
+  /* Section des cartes */
+    .cards {
+        display: flex;
+        overflow-x: auto; /* Scroll horizontal */
+        gap: 20px; /* Espacement entre les cartes */
+        padding: 20px;
+        scrollbar-width: thin; /* Style pour les navigateurs compatibles */
+        scrollbar-color: #888 #f0f0f0; /* Couleur de la barre de défilement */
+    }
+
+    .cards::-webkit-scrollbar {
+        height: 10px; /* Hauteur de la barre de défilement */
+    }
+
+    .cards::-webkit-scrollbar-track {
+        background: #f0f0f0; /* Fond de la barre */
+    }
+
+    .cards::-webkit-scrollbar-thumb {
+        background-color: #888; /* Couleur du "curseur" */
+        border-radius: 5px;
+    }
+
+    .projet-card {
+        position: relative;
+        flex: 0 0 auto; /* Fixe la largeur des cartes */
+        width: 800px;
+        aspect-ratio: 950 / 575; /* Ratio fixe (1.65:1) */
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+  /* Effet au survol */
+    .projet-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+  /* Image du projet */
+  .card-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* L'image remplit la carte tout en respectant son ratio */
+  }
+
+  /* Overlay */
+  .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85); /* Fond semi-transparent */
+      color: white;
+      opacity: 0; /* Initialement invisible */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px; /* Ajoute des marges internes pour éviter que le contenu touche les bords */
+      box-sizing: border-box; /* Inclut le padding dans les dimensions de l'overlay */
+      border-radius: 10px; /* Ajuste le rayon pour qu'il corresponde aux bords de la carte */
+      transition: opacity 0.3s ease-in-out; /* Transition fluide pour l'apparition */
+      overflow: hidden; /* Empêche tout contenu de dépasser l'overlay */
+  }
+
+  .projet-card:hover .card-overlay {
+      opacity: 1; /* Rendre l'overlay visible au survol */
+  }
+
+  /* Contenu de l'overlay */
+  .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%; /* S'assure que le contenu occupe toute la largeur disponible */
+      margin-bottom: 15px;
+  }
+
+  /* Titre (aligné à gauche) */
+  .card-title {
+      font-size: 40px;
+      font-family: 'TAN PEARL', serif;
+      color: var(--White);
+      margin: 0;
+  }
+
+  /* Type de projet (aligné à droite) */
+  .project-type {
+      font-size: 32px;
+      font-family: 'Antic Didone', serif;
+      color: var(--White);
+  }
+
+  /* Description */
+  .card-description {
+      font-size: 24px;
+      font-family: 'Antic Didone', sans-serif; /* Police classique */
+      color: var(--White);
+      margin-bottom: 15px;
+  }
+
+  /* Bouton "En savoir plus" */
+  .see-more-btn {
+      align-self: center; /* Centré horizontalement */
+      background: var(--Black);
+      color: var(--White);
+      font-size: 1.5rem;
+      font-family: 'Antic Didone', serif;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 1px solid var(--White);
+      border-radius: 5px;
+      transition: background 0.3s ease;
+  }
+
+  .see-more-btn:hover {
+      background: var(--White);
+      color: var(--Black);
+  }
 
     /* Animation fluide sur le titre et la catégorie */
     .card-title, .project-type, .card-description, .see-more-btn {
@@ -744,35 +890,39 @@ Architecture du css:
     }
 
     .scroll-start, .scroll-end {
-        font-size: 1.2rem;
+        font-size: 24px;
         color: var(--White); /* Variable CSS personnalisée */
-        font-family: 'Poppins', sans-serif; /* Assurez-vous que cette police est importée */
+        font-family: 'Antic Didone', sans-serif; /* Assurez-vous que cette police est importée */
         margin: 0 10px;
     }
 
     .scroll-lines {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex: 1;
-        max-width: 750px;
-        height: 50px; /* Hauteur totale de la zone de la barre */
-        position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+      max-width: 750px;
+      height: 50px; /* Hauteur totale de la zone de la barre */
+      position: relative;
     }
-
-    .scroll-lines .line {
-    width: 2.5px;
-    height: 35px; /* Hauteur par défaut */
-    background-color: var(--White);
-    transition: height 0.15s ease-in-out; /* Transition plus rapide pour suivre le scroll */
-    } 
-
-    /* Ligne active (devient plus grande lors du défilement) */
+   /* Ligne active (visible en vert) */
     .scroll-lines .line.active {
-        height: 45px; /* Hauteur lorsqu'elle est active */
-        background-color: var(--White);
+        height: 45px; /* Taille plus grande pour la ligne active */
+        background-color: var(--Green); /* Couleur verte */
+        width: 4px; /* Barre plus épaisse */
+        border-radius: 2px; /* Coins légèrement arrondis */
+        transition: height 0.15s ease-in-out, background-color 0.15s ease-in-out, width 0.15s ease-in-out, border-radius 0.15s ease-in-out;
     }
 
+    /* Ligne non active (par défaut) */
+    .scroll-lines .line {
+        width: 2.5px;
+        height: 35px; /* Taille normale */
+        background-color: var(--White);
+        border-radius: 2px; /* Coins légèrement arrondis */
+        transition: height 0.15s ease-in-out, background-color 0.15s ease-in-out, width 0.15s ease-in-out, border-radius 0.15s ease-in-out;
+    }
+          
 
   /* Styles pour mobile */
   @media (max-width: 768px) {

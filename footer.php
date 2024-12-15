@@ -4,20 +4,20 @@
         <div class="footer-layout">
             <!-- Réseaux Sociaux -->
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/votreprofil" target="_blank" aria-label="LinkedIn">
+                <a href="https://www.instagram.com/angelo.bstii2.0" target="_blank" aria-label="LinkedIn">
                     <img src="<?php echo get_template_directory_uri(); ?>/media/icons/linkedin.svg" alt="LinkedIn">
-                    <span class="social-name">LinkedIn</span>
+                    <p class="social-name">LinkedIn</p>
                 </a>
-                <a href="https://www.instagram.com/votreprofil" target="_blank" aria-label="Instagram">
+                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
                     <img src="<?php echo get_template_directory_uri(); ?>/media/icons/instagram.svg" alt="Instagram">
-                    <span class="social-name">Instagram</span>
+                    <p class="social-name">Instagram</p>
                 </a>
             </div>
 
             <!-- Mentions légales et Contact -->
             <div class="footer-links">
                 <a class="footer-link" href="<?php echo esc_url(home_url('/mentions-legales')); ?>">Mentions légales</a>
-                <a class="footer-link" href="mailto:votremail@example.com">Contactez-moi</a>
+                <a class="footer-link" href="mailto:angelo.bsti25@gmail.com">Contactez-moi</a>
             </div>
         </div>
 
@@ -30,4 +30,5 @@
 
 <?php wp_footer(); ?>
 </body>
+
 </html>

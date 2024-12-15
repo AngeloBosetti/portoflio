@@ -45,27 +45,4 @@ function enqueue_custom_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
 
-// Ajouter une vidéo de fond venant de Wordpress
-function theme_customize_register($wp_customize)
-{
-    // Ajouter une section pour la vidéo
-    $wp_customize->add_section('background_video_section', array(
-        'title' => __('Vidéo de fond', 'textdomain'),
-        'priority' => 30,
-    ));
 
-    // Ajouter un réglage pour la vidéo
-    $wp_customize->add_setting('background_video', array(
-        'default' => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-
-    // Ajouter un contrôle pour uploader la vidéo
-    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'background_video_control', array(
-        'label' => __('Vidéo de fond', 'textdomain'),
-        'section' => 'background_video_section',
-        'mime_type' => 'video',
-        'settings' => 'background_video',
-    )));
-}
-add_action('customize_register', 'theme_customize_register');

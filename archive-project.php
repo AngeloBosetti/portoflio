@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div class="content-area">
-    <h1 class="title_projets">Mes Projets</h1>
+    <h2 class="title_projets">Mes Projets</h2>
     <div class="cards">
         <?php
         // Vérifie si des projets ont été trouvés
@@ -18,10 +18,20 @@
                         <div class="card-overlay">
                             <div class="card-header">
                                 <h2 class="card-title"><?php the_title(); ?></h2>
-                                <span class="project-type"><?php echo get_field('project_type'); ?></span>
+                                <span class="project-type">
+                                    <?php
+                                        // Récupérer la première catégorie associée
+                                        $categories = get_the_category();
+                                        if (!empty($categories)) {
+                                            echo esc_html($categories[0]->name); // Affiche le nom de la catégorie
+                                        } else {
+                                            echo "Non défini"; // Si aucun type n'est associé
+                                        }
+                                        ?>
+                                </span>
                             </div>
                             <div class="card-description">
-                                <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
+                                <?php echo wp_trim_words(get_the_excerpt(),50, '...'); ?>
                             </div>
                             <a class="see-more-btn" href="<?php the_permalink(); ?>">En savoir plus</a>
                         </div>
@@ -63,23 +73,34 @@
         const scrollLeft = scrollContainer.scrollLeft;
         const scrollPercentage = scrollLeft / totalScrollWidth;
 
-        // Trouver l'index de la barre active
+        // Trouver l'index de la ligne active
         const activeLineIndex = Math.round(scrollPercentage * (lines.length - 1));
 
-        // Ajuster les hauteurs des barres en fonction de leur proximité avec la barre active
+        // Supprime la classe active de toutes les lignes
         lines.forEach((line, index) => {
-            const distance = Math.abs(index - activeLineIndex); // Distance par rapport à la barre active
+            line.classList.remove("active");
 
+            // Ajuster les hauteurs en fonction de la distance
+            const distance = Math.abs(index - activeLineIndex); // Distance par rapport à la ligne active
             if (distance === 0) {
-                line.style.height = "45px"; // Barre active (hauteur maximale)
+                line.style.height = "45px"; // Hauteur de la ligne active
+                line.style.width = "4px"; // Épaisseur de la ligne active
             } else if (distance === 1) {
-                line.style.height = "40px"; // Barres voisines immédiates (semi-hauteur)
+                line.style.height = "40px"; // Lignes voisines
+                line.style.width = "3.5px";
             } else if (distance === 2) {
-                line.style.height = "37px"; // Barres un peu plus éloignées
+                line.style.height = "37px"; // Lignes un peu éloignées
+                line.style.width = "3px";
             } else {
-                line.style.height = "35px"; // Barres éloignées (taille par défaut)
+                line.style.height = "35px"; // Hauteur par défaut
+                line.style.width = "2.5px";
             }
         });
+
+        // Appliquer la classe active à la ligne correspondante
+        if (lines[activeLineIndex]) {
+            lines[activeLineIndex].classList.add("active");
+        }
 
         // Mettre à jour le numéro de projet
         const currentProject = Math.round(scrollPercentage * (totalProjects - 1)) + 1;
@@ -92,6 +113,5 @@
     // Synchronisation pendant le défilement
     scrollContainer.addEventListener("scroll", syncScrollBar);
     });
-
 </script>
 <?php get_footer(); ?>
