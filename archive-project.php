@@ -1,16 +1,40 @@
 <?php get_header(); ?>
 
 <div class="content-area">
-    <h2 class="title_projets">Mes Projets</h2>
+    <!-- Conteneur Titre + Menu Déroulant -->
+    <div class="title-container">
+        <h2 class="title_projets">Mes Projets</h2>
+        <div class="filter-container">
+            <label for="project-category">Filtrer par :</label>
+            <select id="project-category">
+                <option value="all">Tous</option>
+                <?php
+                // Récupérer toutes les catégories associées aux projets
+                $categories = get_categories(array(
+                    'taxonomy' => 'category',
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                ));
+                foreach ($categories as $category): ?>
+                    <option value="<?php echo esc_attr($category->slug); ?>">
+                        <?php echo esc_html($category->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+
+    <!-- Liste des projets -->
     <div class="cards">
         <?php
-        // Vérifie si des projets ont été trouvés
         if (have_posts()): ?>
             <?php
-            // Boucle à travers chaque projet
             while (have_posts()):
                 the_post(); ?>
-                <article class="projet-card">
+                <article class="projet-card" data-category="<?php
+                $categories = get_the_category();
+                echo !empty($categories) ? esc_attr($categories[0]->slug) : 'uncategorized';
+                ?>">
                     <div class="card-content">
                         <div class="card-image">
                             <?php the_post_thumbnail('large'); ?>
@@ -20,18 +44,17 @@
                                 <h2 class="card-title"><?php the_title(); ?></h2>
                                 <span class="project-type">
                                     <?php
-                                        // Récupérer la première catégorie associée
-                                        $categories = get_the_category();
-                                        if (!empty($categories)) {
-                                            echo esc_html($categories[0]->name); // Affiche le nom de la catégorie
-                                        } else {
-                                            echo "Non défini"; // Si aucun type n'est associé
-                                        }
-                                        ?>
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) {
+                                        echo esc_html($categories[0]->name);
+                                    } else {
+                                        echo "Non défini";
+                                    }
+                                    ?>
                                 </span>
                             </div>
                             <div class="card-description">
-                                <?php echo wp_trim_words(get_the_excerpt(),50, '...'); ?>
+                                <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?>
                             </div>
                             <a class="see-more-btn" href="<?php the_permalink(); ?>">En savoir plus</a>
                         </div>
@@ -42,6 +65,8 @@
             <p>Aucun projet trouvé.</p>
         <?php endif; ?>
     </div>
+
+    <!-- Barre de défilement -->
     <div class="scroll-bar">
         <span class="scroll-start">01</span>
         <div class="scroll-lines">
@@ -53,65 +78,111 @@
     </div>
 </div>
 
+<!-- Script de tri par catégories et synchronisation de la barre -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll(".projet-card");
-    const lines = document.querySelectorAll(".scroll-lines .line");
-    const scrollStart = document.querySelector(".scroll-start");
-    const scrollEnd = document.querySelector(".scroll-end");
+        const categoryFilter = document.getElementById("project-category");
+        const projectCards = document.querySelectorAll(".projet-card");
 
-    // Total de projets
-    const totalProjects = cards.length;
-    scrollEnd.textContent = totalProjects.toString().padStart(2, "0");
+        // Filtrage des projets
+        categoryFilter.addEventListener("change", function () {
+            const selectedCategory = this.value;
 
-    // Largeur totale du défilement
-    const scrollContainer = document.querySelector(".cards");
-    const totalScrollWidth = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
+            projectCards.forEach(card => {
+                const cardCategory = card.getAttribute("data-category");
 
-    // Fonction pour synchroniser les lignes avec le défilement
-    const syncScrollBar = () => {
-        const scrollLeft = scrollContainer.scrollLeft;
-        const scrollPercentage = scrollLeft / totalScrollWidth;
+                // Afficher/Masquer les projets selon la catégorie sélectionnée
+                if (selectedCategory === "all" || cardCategory === selectedCategory) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
 
-        // Trouver l'index de la ligne active
-        const activeLineIndex = Math.round(scrollPercentage * (lines.length - 1));
-
-        // Supprime la classe active de toutes les lignes
-        lines.forEach((line, index) => {
-            line.classList.remove("active");
-
-            // Ajuster les hauteurs en fonction de la distance
-            const distance = Math.abs(index - activeLineIndex); // Distance par rapport à la ligne active
-            if (distance === 0) {
-                line.style.height = "45px"; // Hauteur de la ligne active
-                line.style.width = "4px"; // Épaisseur de la ligne active
-            } else if (distance === 1) {
-                line.style.height = "40px"; // Lignes voisines
-                line.style.width = "3.5px";
-            } else if (distance === 2) {
-                line.style.height = "37px"; // Lignes un peu éloignées
-                line.style.width = "3px";
-            } else {
-                line.style.height = "35px"; // Hauteur par défaut
-                line.style.width = "2.5px";
-            }
+            // Réinitialiser le scroll si filtrage est activé
+            document.querySelector(".cards").scrollLeft = 0;
+            updateScrollMetrics();
         });
 
-        // Appliquer la classe active à la ligne correspondante
-        if (lines[activeLineIndex]) {
-            lines[activeLineIndex].classList.add("active");
-        }
+        // Synchronisation de la barre de défilement
+        const scrollContainer = document.querySelector(".cards");
+        const lines = document.querySelectorAll(".scroll-lines .line");
+        const scrollStart = document.querySelector(".scroll-start");
+        const scrollEnd = document.querySelector(".scroll-end");
+        const scrollBar = document.querySelector(".scroll-lines");
 
-        // Mettre à jour le numéro de projet
-        const currentProject = Math.round(scrollPercentage * (totalProjects - 1)) + 1;
-        scrollStart.textContent = currentProject.toString().padStart(2, "0");
-    };
+        let isDragging = false;
+        let startX, startScroll;
 
-    // Initialisation dès le chargement
-    syncScrollBar();
+        const totalProjects = projectCards.length;
+        scrollEnd.textContent = totalProjects.toString().padStart(2, "0");
 
-    // Synchronisation pendant le défilement
-    scrollContainer.addEventListener("scroll", syncScrollBar);
+        const updateScrollMetrics = () => {
+            const totalScrollWidth = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
+            const scrollPercentage = scrollContainer.scrollLeft / totalScrollWidth;
+            const activeLineIndex = Math.round(scrollPercentage * (lines.length - 1));
+
+            // Mettre à jour la barre de défilement
+            lines.forEach((line, index) => {
+                line.classList.remove("active");
+                const distance = Math.abs(index - activeLineIndex);
+                if (distance === 0) {
+                    line.style.height = "45px";
+                    line.style.width = "4px";
+                } else if (distance === 1) {
+                    line.style.height = "40px";
+                    line.style.width = "3.5px";
+                } else if (distance === 2) {
+                    line.style.height = "37px";
+                    line.style.width = "3px";
+                } else {
+                    line.style.height = "35px";
+                    line.style.width = "2.5px";
+                }
+            });
+
+            if (lines[activeLineIndex]) {
+                lines[activeLineIndex].classList.add("active");
+            }
+
+            // Mise à jour des indices
+            const currentProject = Math.round(scrollPercentage * (totalProjects - 1)) + 1;
+            scrollStart.textContent = currentProject.toString().padStart(2, "0");
+        };
+
+        scrollContainer.addEventListener("scroll", updateScrollMetrics);
+
+        const handleDragStart = (e) => {
+            isDragging = true;
+            startX = e.clientX || e.touches[0].clientX;
+            startScroll = scrollContainer.scrollLeft;
+        };
+
+        const handleDragging = (e) => {
+            if (!isDragging) return;
+            const currentX = e.clientX || e.touches[0].clientX;
+            const delta = currentX - startX;
+
+            const totalScrollWidth = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
+            const scrollBarWidth = scrollBar.offsetWidth;
+            const scrollRatio = totalScrollWidth / scrollBarWidth;
+
+            scrollContainer.scrollLeft = startScroll + delta * scrollRatio;
+        };
+
+        const handleDragEnd = () => {
+            isDragging = false;
+        };
+
+        scrollBar.addEventListener("mousedown", handleDragStart);
+        scrollBar.addEventListener("mousemove", handleDragging);
+        document.addEventListener("mouseup", handleDragEnd);
+        scrollBar.addEventListener("touchstart", handleDragStart);
+        scrollBar.addEventListener("touchmove", handleDragging);
+        document.addEventListener("touchend", handleDragEnd);
+
+        updateScrollMetrics();
     });
 </script>
+
 <?php get_footer(); ?>

@@ -719,10 +719,61 @@ Architecture du css:
   
   /* Styles globaux */
 
+    /* Conteneur pour le titre et le menu déroulant */
+    .title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Menu déroulant */
+    .filter-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filter-container label {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--White);
+    }
+
+    /* Personnalisation de la police et de la couleur du menu déroulant */
+.filter-container select {
+    padding: 8px 12px; /* Ajouter du padding pour plus de confort visuel */
+    font-size: 16px; /* Taille de police */
+    font-family: 'Antic Didone', serif; /* Police de ton choix */
+    color: #333; /* Couleur du texte avant sélection */
+    background-color: var(--White); /* Couleur de fond avant sélection */
+    border: 1px solid #ccc; /* Bordure pour le style */
+    border-radius: 4px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en forme de main */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition douce lors du survol ou de la sélection */
+}
+
+/* Changer la couleur de fond et du texte lorsque l'utilisateur survole ou sélectionne */
+.filter-container select:hover {
+    background-color: var(--White); /* Changer la couleur de fond au survol */
+    border-color: var(--Green); /* Changer la bordure au survol */
+}
+
+/* Changer la couleur de fond lorsque le menu est actif (c'est-à-dire une catégorie sélectionnée) */
+.filter-container select:focus {
+    background-color: var(--White); /* Couleur de fond après sélection */
+    border-color: var(--Green); /* Couleur de bordure après sélection */
+    color: #333; /* Couleur du texte après sélection */
+}
+
+    .filter-container select:focus {
+        outline: none;
+        border-color: var(--Green);
+    }
     .title_projets {
         text-align: center;
         font-size: 2.5rem;
-        margin-bottom: 40px;
         font-family: 'TAN PEARL', serif;
     }
 
@@ -922,6 +973,17 @@ Architecture du css:
         border-radius: 2px; /* Coins légèrement arrondis */
         transition: height 0.15s ease-in-out, background-color 0.15s ease-in-out, width 0.15s ease-in-out, border-radius 0.15s ease-in-out;
     }
+
+    .scroll-lines {
+    cursor: pointer; /* Indique que c'est interactif */
+    user-select: none;
+}
+
+.scroll-lines .line:hover {
+    background-color: var(--Green);
+    height: 50px;
+    transition: height 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
           
 
   /* Styles pour mobile */
