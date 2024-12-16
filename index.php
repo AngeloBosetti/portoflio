@@ -28,11 +28,13 @@ get_header();
                     <span class="text-highlight">web Design</span>.
                 </p>
             </div>
-            <button class="btn-seemore" href="/projets">En savoir plus</button>
+
+              <!-- Bouton "En savoir plus" redirige vers la page "À propos" -->
+            <a class="btn-index" href="<?php echo get_permalink(get_page_by_path('a-propos')->ID); ?>">En savoir plus</a>
         </article>
 
         <!-- Dernier projet -->
-        <article>
+        <article class="section-last-project">
             <div class="last-project">
                 <div class="last-project_title">
                     <h3 class="last-project_h3">Dernier Projet</h3>
@@ -82,8 +84,8 @@ get_header();
                                             <?php echo wp_trim_words(get_the_excerpt(), 40, '...'); ?>
                                         </div>
 
-                                        <!-- Bouton pour voir le projet -->
-                                        <a class="last-projet-see-more-btn" href="<?php the_permalink(); ?>">En savoir plus</a>
+                                        <!-- Bouton "Voir mes autres projets" redirige vers l'archive des projets -->
+                                        <a class="last-projet-see-more-btn" href="<?php the_permalink(); ?>">Voir le projet</a>
                                     </div>
                                 </div>
                                 
@@ -96,7 +98,9 @@ get_header();
                     <?php endif; ?>
                 </div>
             </div>
-            <button class="btn-seeprojects">Voir mes autres projets</button>
+            <div class="more-project-btn">
+                <a class="btn-index" href="<?php echo get_post_type_archive_link('project'); ?>">Voir mes autres projets</a>
+            </div>            
         </article>
         <h4 class="text-contact">N’hésitez pas à me contacter ou à me suivre sur les réseaux !</h4>
     </main>

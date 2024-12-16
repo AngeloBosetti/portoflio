@@ -234,12 +234,13 @@ Architecture du css:
     font-size: 1.5em;
     font-weight: bold;
     transition: color 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .menu-items li a:hover {
     color: var(--Green);
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
+    font-size: 1.6em;
+    
   }
 
   /* Prevent body from scrolling when menu is open */
@@ -537,12 +538,32 @@ Architecture du css:
   .presentation-paragraphe:hover .text-highlight {
     color: #AEDD71; /* Vert au survol de la div */
   }
+  
+  .section-presentation,
+  .more-project-btn {
+    text-align: center; /* Centre tous les éléments enfants dans cette section */
+    }
 
-  .btn-seemore {
-    display: block;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
+
+    .btn-index {
+        display: inline-block; /* Largeur du bouton ajustée au texte */
+        text-align: center; /* Centre le contenu dans le bouton */
+        text-decoration: none; /* Retire le soulignement */
+        background: var(--Black);
+        color: var(--White);
+        font-size: 36px;
+        font-family: 'Antic Didone', serif;
+        padding: 10px 15px; /* Ajoute des marges internes */
+        border: 1px solid var(--White);
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        margin: 0; /* Supprime les marges inutiles */
+    }
+
+    .btn-index:hover {
+        background: var(--White);
+        color: var(--Black);
+    }
 
   .text-contact {
       color: var(--Green);
@@ -558,7 +579,6 @@ Architecture du css:
       justify-content: center; /* Centre horizontalement */
       align-items: center; /* Centre verticalement */
       height: 100vh; /* Prend toute la hauteur de l'écran */
-      padding: 20px;
       overflow: hidden; /* Désactive le scroll horizontal si nécessaire */
       background-color: #131315; /* Optionnel : une couleur de fond pour l'effet visuel */
   }
@@ -704,11 +724,7 @@ Architecture du css:
     }
 
 
-    .btn-seeprojects {
-      display: block;
-      margin: 0 auto;
-      margin-top: 50px;
-    }
+    
 /*4. ---Fin Page d'accueil--- */
 
 
@@ -742,30 +758,30 @@ Architecture du css:
     }
 
     /* Personnalisation de la police et de la couleur du menu déroulant */
-.filter-container select {
-    padding: 8px 12px; /* Ajouter du padding pour plus de confort visuel */
-    font-size: 16px; /* Taille de police */
-    font-family: 'Antic Didone', serif; /* Police de ton choix */
-    color: #333; /* Couleur du texte avant sélection */
-    background-color: var(--White); /* Couleur de fond avant sélection */
-    border: 1px solid #ccc; /* Bordure pour le style */
-    border-radius: 4px; /* Coins arrondis */
-    cursor: pointer; /* Curseur en forme de main */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition douce lors du survol ou de la sélection */
-}
+    .filter-container select {
+        padding: 8px 12px; /* Ajouter du padding pour plus de confort visuel */
+        font-size: 16px; /* Taille de police */
+        font-family: 'Antic Didone', serif; /* Police de ton choix */
+        color: #333; /* Couleur du texte avant sélection */
+        background-color: var(--White); /* Couleur de fond avant sélection */
+        border: 1px solid #ccc; /* Bordure pour le style */
+        border-radius: 4px; /* Coins arrondis */
+        cursor: pointer; /* Curseur en forme de main */
+        transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition douce lors du survol ou de la sélection */
+    }
 
-/* Changer la couleur de fond et du texte lorsque l'utilisateur survole ou sélectionne */
-.filter-container select:hover {
-    background-color: var(--White); /* Changer la couleur de fond au survol */
-    border-color: var(--Green); /* Changer la bordure au survol */
-}
+    /* Changer la couleur de fond et du texte lorsque l'utilisateur survole ou sélectionne */
+    .filter-container select:hover {
+        background-color: var(--White); /* Changer la couleur de fond au survol */
+        border-color: var(--Green); /* Changer la bordure au survol */
+    }
 
-/* Changer la couleur de fond lorsque le menu est actif (c'est-à-dire une catégorie sélectionnée) */
-.filter-container select:focus {
-    background-color: var(--White); /* Couleur de fond après sélection */
-    border-color: var(--Green); /* Couleur de bordure après sélection */
-    color: #333; /* Couleur du texte après sélection */
-}
+    /* Changer la couleur de fond lorsque le menu est actif (c'est-à-dire une catégorie sélectionnée) */
+    .filter-container select:focus {
+        background-color: var(--White); /* Couleur de fond après sélection */
+        border-color: var(--Green); /* Couleur de bordure après sélection */
+        color: #333; /* Couleur du texte après sélection */
+    }
 
     .filter-container select:focus {
         outline: none;
@@ -977,13 +993,13 @@ Architecture du css:
     .scroll-lines {
     cursor: pointer; /* Indique que c'est interactif */
     user-select: none;
-}
+  }
 
-.scroll-lines .line:hover {
-    background-color: var(--Green);
-    height: 50px;
-    transition: height 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
+  .scroll-lines .line:hover {
+      background-color: var(--Green);
+      height: 50px;
+      transition: height 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
           
 
   /* Styles pour mobile */
@@ -1037,4 +1053,189 @@ Architecture du css:
 
 
 /*5. ---Fin Archive projets--- */
+
+
+/*6 ---Page About--- */
+
+
+  /* Style du contenu principal */
+  .content {
+      position: relative;
+      z-index: 1; /* Devant les cercles */
+      color: var(--White);
+      text-align: center;
+      padding: 50px;
+  }
+    /* SECTION GLOBALE DE LA PAGE ABOUT */
+  .about-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+  }
+
+  .about-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--Green);
+      margin-bottom: 30px;
+  }
+
+
+  /* Style par défaut pour les mots importants */
+  .text-hover {
+      color: var(--White); /* Couleur de base */
+      font-weight: normal;
+      transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+  }
+
+  /* Survol du paragraphe contenant le texte */
+  .about-intro:hover .text-hover,
+  .about-contact:hover .text-hover {
+      color: var(--Green); /* Couleur en surbrillance */
+      font-weight: bold; /* Met le texte en gras */
+  }
+
+
+
+  /* INTRODUCTION */
+  .about-intro {
+      margin-bottom: 40px;
+      line-height: 1.8;
+      color: var(--White);
+  }
+
+  /* COMPÉTENCES LOGICIELS */
+  .about-skills {
+      margin-bottom: 40px;
+  }
+
+  .skills-title {
+      font-size: 1.8rem;
+      color: var(--Green);
+      margin-bottom: 20px;
+      text-align: center;
+  }
+
+  .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+  }
+
+  .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      width: 120px;
+  }
+
+  .skill-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+  }
+
+  /* SECTION CONTACT */
+  .about-contact {
+      text-align: center;
+      margin-top: 30px;
+  }
+
+  .about-contact a {
+      text-decoration: none;
+      color: var(--White); /* Couleur de base */
+      font-weight: normal; /* Normal quand pas survolé */
+      transition: color 0.3s ease; /* Animation fluide */
+  }
+
+  .about-contact a:hover {
+      color: var(--Green); /* Change la couleur au survol */
+      font-weight: bold;
+  }
+
+
+
+
+
+/*6 ---Fin Page About--- */
+
+
+/*7 ---Background Circles--- */
+
+  /* Conteneur principal */
+  .content {
+      position: relative;
+      z-index: 1; /* Devant les cercles */
+      color: var(--White);
+      text-align: center;
+  } 
+
+  .background-circles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1; /* Derrière le contenu */
+      background: var(--Black); /* Arrière-plan principal */
+  }
+
+  /* Style des cercles */
+  .circle {
+      position: absolute;
+      width: 500px; /* Taille des cercles */
+      height: 500px;
+      background: var(--Green); /* Couleur des cercles */
+      opacity: 0.2; /* Les rendre diffus */
+      border-radius: 50%;
+      filter: blur(120px); /* Effet flou */
+      animation: move-circle 15s infinite ease-in-out; /* Animation des cercles */
+  }
+
+  /* Créer des positions aléatoires pour chaque cercle */
+  .circle:nth-child(1) {
+      top: 20%;
+      left: 15%;
+      animation-delay: 0s;
+  }
+  .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-delay: 3s;
+  }
+  .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-delay: 6s;
+  }
+  .circle:nth-child(4) {
+      top: 30%;
+      left: 80%;
+      animation-delay: 9s;
+  }
+  .circle:nth-child(5) {
+      top: 60%;
+      left: 20%;
+      animation-delay: 12s;
+  }
+
+  /* Animation pour les cercles */
+  @keyframes move-circle {
+      0% {
+          transform: translate(0, 0) scale(1);
+      }
+      50% {
+          transform: translate(50px, -30px) scale(1.2); /* Bouge et change légèrement de taille */
+      }
+      100% {
+          transform: translate(-30px, 40px) scale(1);
+      }
+  }
 

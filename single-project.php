@@ -10,6 +10,17 @@
                 <h1 class="projet-title"><?php the_title(); ?></h1>
                 <div class="projet-content">
                     <?php the_content(); ?>
+                    <span class="projet-type">
+                                                <?php
+                                                // Récupérer la première catégorie associée
+                                                $categories = get_the_category();
+                                                if (!empty($categories)) {
+                                                    echo esc_html($categories[0]->name); // Affiche le nom de la catégorie
+                                                } else {
+                                                    echo "Non défini"; // Si aucune catégorie
+                                                }
+                                                ?>
+                                            </span>
                 </div>
             </div>
         </article>

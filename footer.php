@@ -4,11 +4,11 @@
         <div class="footer-layout">
             <!-- Réseaux Sociaux -->
             <div class="footer-socials">
-                <a href="https://www.instagram.com/angelo.bstii2.0" target="_blank" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/angelo-bosetti/" target="_blank" aria-label="LinkedIn">
                     <img src="<?php echo get_template_directory_uri(); ?>/media/icons/linkedin.svg" alt="LinkedIn">
                     <p class="social-name">LinkedIn</p>
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+                <a href="https://www.instagram.com/angelo.bstii2.0" target="_blank" aria-label="Instagram">
                     <img src="<?php echo get_template_directory_uri(); ?>/media/icons/instagram.svg" alt="Instagram">
                     <p class="social-name">Instagram</p>
                 </a>

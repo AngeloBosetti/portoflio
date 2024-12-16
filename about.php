@@ -5,45 +5,71 @@ Template name: About
 get_header();
 ?>
 
-<div id="primary" class="content-area">
+<div id="primary" class="content-area about-page">
     <main id="main" class="site-main">
-        <h2 class="titre-about">Bonjour</h2>
-        <p>Je m’appelle Angelo Bosetti <br> J’ai 20 ans </p>
-        <p>Passi­onné par l’illustration digitale et le web Design, je suis étudiant en design à l'Univ­ersité de Techno­logie de Montbé­liard.</p>
-        <p>Mes passions sont liées à l'informatique/électronique, aux jeux vidéo et à la musique</p>
-        <div>
-            <p>Les logiciels que je sais utiliser :</p>
-            <ul>
-                <li>
-                    <img src="/media/icons/photoshop.svg" alt="Icon Photoshop">
-                    <p>Photoshop</p>
-                </li>
-                <li>
-                    <img src="/media/icons/illustrator.svg" alt="Icon Illustrator">
-                    <p>Illustrator</p>
-                </li>
-                <li>
-                    <img src="/" alt="Icon Figma">
-                    <p>Figma</p>
-                </li>
-                <li>
-                    <img src="/media/icons/wordpress.svg" alt="Icon Wordpress">
-                    <p>Wordpress</p>
-                </li>
-                <li>
-                    <img src="/" alt="Icon HTML 5">
-                    <p>HTML</p>
-                </li>
-                <li>
-                    <img src="/" alt="Icon CSS">
-                    <p>CSS</p>
-                </li>
-                <li>
-                    <img src="/" alt="Icon Notion">
-                    <p>Notion</p>
-                </li>
-            </ul>
-            <p>N’hésitez pas à me contacter ou à me suivre sur les réseaux !</p>
+        <div class="background-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="content-about">
+            <!-- Titre principal -->
+            <h1 class="about-title">À propos de moi</h1>
+
+            <!-- Introduction -->
+            <section class="about-intro">
+                <p>
+                    Je m’appelle <span class="text-hover">Angelo Bosetti</span>, j’ai <span class="text-hover">20 ans</span>. 
+                    Actuellement, je suis <span class="text-hover">étudiant en design</span> à l'<span class="text-hover">Université de Technologie de Montbéliard</span>.
+                </p>
+                <p>
+                    Je suis passi­onné par l’<span class="text-hover">illustration digitale</span>, le <span class="text-hover">web design</span>, 
+                    ainsi que par tout ce qui touche à l'<span class="text-hover">informatique</span>, à l'<span class="text-hover">électronique</span>, 
+                    aux <span class="text-hover">jeux vidéo</span> et à la <span class="text-hover">musique</span>.
+                </p>
+            </section>
+
+            <!-- Compétences logiciels -->
+            <section class="about-skills">
+                <h2 class="skills-title">Logiciels maîtrisés</h2>
+                <ul class="skills-list">
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/photoshop.svg" alt="Photoshop" class="skill-icon">
+                        <span class="text-hover">Photoshop</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/illustrator.svg" alt="Illustrator" class="skill-icon">
+                        <span class="text-hover">Illustrator</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/figma.svg" alt="Figma" class="skill-icon">
+                        <span class="text-hover">Figma</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/wordpress.svg" alt="WordPress" class="skill-icon">
+                        <span class="text-hover">WordPress</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/html5.svg" alt="HTML" class="skill-icon">
+                        <span class="text-hover">HTML</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/css3.svg" alt="CSS" class="skill-icon">
+                        <span class="text-hover">CSS</span>
+                    </li>
+                    <li class="skill-item">
+                        <img src="<?php echo get_template_directory_uri(); ?>/media/icons/logiciels/notion.svg" alt="Notion" class="skill-icon">
+                        <span class="text-hover">Notion</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Appel à l'action -->
+            <section class="about-contact">
+                <p>
+                    N’hésitez pas à me <a href="#" class="text-hover">contacter</a> ou à me suivre sur les <span class="text-hover">réseaux sociaux</span> pour découvrir mon travail !
+                </p>
+            </section>
         </div>
     </main>
 </div>
@@ -51,3 +77,5 @@ get_header();
 <?php
 get_footer();
 ?>
+
+
